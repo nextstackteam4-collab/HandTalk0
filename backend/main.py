@@ -26,7 +26,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # للأمان، غيّرها لرابط موقعك عند النشر
+    allow_origins=["https://handtalk-wy4h.onrender.com/"], # للأمان، غيّرها لرابط موقعك عند النشر
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -85,4 +85,5 @@ async def search_cloud_dictionary(query: str = Query(..., min_length=1)):
 
 @app.get("/")
 def root():
+
     return {"message": "Welcome to Handtalk Main API"}
