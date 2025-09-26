@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handtalk - تحليل صورة</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="notification" class="notification"></div>
+    <div id="particles-js"></div>
+    <div class="content-wrapper">
+      <nav class="navbar">
+        <div class="navbar-container">
+          <a href="main_dashboard.html" class="navbar-brand">Handtalk</a>
+          <div class="navbar-right-section">
+            <div class="navbar-links">
+              <a href="main_dashboard.html">الرئيسية</a>
+              <a href="about.html">من نحن</a>
+            </div>
+            <div class="language-switcher">
+              <button id="langToggleAr" class="lang-button" data-lang="ar">
+                عربي
+              </button>
+              <button id="langToggleEn" class="lang-button" data-lang="en">
+                English
+              </button>
+            </div>
+            <div class="theme-switch-wrapper">
+              <label class="theme-switch" for="themeToggle"
+                ><input type="checkbox" id="themeToggle" />
+                <div class="slider round"></div
+              ></label>
+            </div>
+            <div id="google_translate_element" style="display: none"></div>
+          </div>
+          <button id="menu-toggle" aria-label="Open Menu">
+            <span class="bar"></span><span class="bar"></span
+            ><span class="bar"></span>
+          </button>
+        </div>
+      </nav>
+      <div id="mobile-menu">
+        <a href="main_dashboard.html">الرئيسية</a>
+        <a href="about.html">من نحن</a>
+        <div class="language-switcher">
+          <button id="mobileLangToggleAr" class="lang-button" data-lang="ar">
+            عربي
+          </button>
+          <button id="mobileLangToggleEn" class="lang-button" data-lang="en">
+            English
+          </button>
+        </div>
+        <div class="theme-switch-wrapper">
+          <label class="theme-switch" for="mobileThemeToggle"
+            ><input type="checkbox" id="mobileThemeToggle" />
+            <div class="slider round"></div
+          ></label>
+        </div>
+      </div>
+
+      <main class="page-content">
+        <div class="unified-container fade-in-up">
+          <h1 class="page-title">تحليل صورة مرفوعة</h1>
+          <p class="page-subtitle">ارفع أو الصق صورة لتحليل فوري.</p>
+          <div class="mb-6">
+            <label
+              for="imageUpload"
+              class="upload-label"
+              style="
+                display: block;
+                cursor: pointer;
+                border-radius: 0.75rem;
+                transition: all 0.3s ease;
+                border-style: dashed;
+                border-width: 2px;
+                padding: 1rem 1.5rem;
+              "
+              ><input
+                type="file"
+                id="imageUpload"
+                accept="image/*"
+                class="hidden"
+              /><span id="uploadButtonText">اختر صورة لتحليلها</span></label
+            >
+            <p class="text-sm mt-2" id="fileName"></p>
+            <p class="text-sm mt-1">أو الصق صورة مباشرة (Ctrl+V)</p>
+            <img
+              id="imagePreview"
+              src="#"
+              alt="معاينة الصورة"
+              style="
+                margin-top: 1.5rem;
+                max-width: 100%;
+                max-height: 300px;
+                height: auto;
+                border-radius: 0.75rem;
+                border: 2px solid var(--glass-border-light);
+                padding: 0.5rem;
+                display: none;
+              "
+            />
+          </div>
+          <button
+            type="button"
+            id="analyzeButton"
+            class="action-button analyze"
+            disabled
+          >
+            تحليل الصورة
+          </button>
+          <div
+            id="loadingIndicator"
+            class="loading-indicator"
+            style="
+              margin-top: 2.5rem;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 1rem;
+              font-size: 1.1rem;
+              font-weight: 600;
+              display: none;
+            "
+          >
+            <div
+              class="loader-spinner"
+              style="
+                width: 48px;
+                height: 48px;
+                border: 5px solid;
+                border-bottom-color: transparent;
+                border-radius: 50%;
+                display: inline-block;
+                box-sizing: border-box;
+                animation: rotation 1s linear infinite;
+              "
+            ></div>
+            <p>جاري التحليل...</p>
+          </div>
+          <div
+            id="results"
+            class="analysis-results"
+            style="
+              margin-top: 2.5rem;
+              padding: 1.5rem;
+              border-radius: 1rem;
+              display: none;
+            "
+          >
+            <h2
+              style="font-size: 1.25rem; font-weight: bold; margin-bottom: 1rem"
+            >
+              نتائج التحليل:
+            </h2>
+            <p
+              id="analysisOutput"
+              style="white-space: pre-wrap; font-size: 1.125rem"
+            ></p>
+          </div>
+          <div class="mt-10">
+            <a href="main_dashboard.html" class="action-button"
+              >العودة للوحة التحكم</a
+            >
+          </div>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <p>&copy; <span id="currentYear"></span> Handtalk. كل الحقوق محفوظة.</p>
+      </footer>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js"></script>
+    <script src="js/particles-init.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/lang_switcher.js"></script>
+    <script>
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+      // --- Universal Control Sync Script ---
+      const mainThemeToggle = document.getElementById("themeToggle");
+      const mobileThemeToggle = document.getElementById("mobileThemeToggle");
+      const mainLangAr = document.getElementById("langToggleAr");
+      const mainLangEn = document.getElementById("langToggleEn");
+      const mobileLangAr = document.getElementById("mobileLangToggleAr");
+      const mobileLangEn = document.getElementById("mobileLangToggleEn");
+
+      function syncControls() {
+        if (mainThemeToggle && mobileThemeToggle)
+          mobileThemeToggle.checked = mainThemeToggle.checked;
+        if (mainLangAr && mobileLangAr)
+          mobileLangAr.className = mainLangAr.className;
+        if (mainLangEn && mobileLangEn)
+          mobileLangEn.className = mainLangEn.className;
+      }
+
+      if (mobileThemeToggle)
+        mobileThemeToggle.addEventListener("change", () => {
+          mainThemeToggle.checked = mobileThemeToggle.checked;
+          mainThemeToggle.dispatchEvent(new Event("change"));
+        });
+      if (mainThemeToggle)
+        mainThemeToggle.addEventListener("change", () => {
+          if (mobileThemeToggle)
+            mobileThemeToggle.checked = mainThemeToggle.checked;
+        });
+      if (mobileLangAr)
+        mobileLangAr.addEventListener("click", () => mainLangAr.click());
+      if (mobileLangEn)
+        mobileLangEn.addEventListener("click", () => mainLangEn.click());
+
+      document.addEventListener("DOMContentLoaded", () => {
+        syncControls();
+        setTimeout(syncControls, 500);
+        document
+          .getElementById("menu-toggle")
+          ?.addEventListener("click", () => {
+            if (
+              document
+                .getElementById("mobile-menu")
+                .classList.contains("is-open")
+            )
+              syncControls();
+          });
+      });
+    </script>
+  </body>
+</html>

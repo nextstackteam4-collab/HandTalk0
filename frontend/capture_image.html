@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handtalk - تحليل مباشر</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="notification" class="notification"></div>
+    <div id="particles-js"></div>
+    <div class="content-wrapper">
+      <nav class="navbar">
+        <div class="navbar-container">
+          <a href="main_dashboard.html" class="navbar-brand">Handtalk</a>
+          <div class="navbar-right-section">
+            <div class="navbar-links">
+              <a href="main_dashboard.html">الرئيسية</a>
+              <a href="about.html">من نحن</a>
+            </div>
+            <div class="theme-switch-wrapper">
+              <label class="theme-switch" for="themeToggle"
+                ><input type="checkbox" id="themeToggle" />
+                <div class="slider round"></div
+              ></label>
+            </div>
+            <div id="google_translate_element" style="display: none"></div>
+          </div>
+          <button id="menu-toggle" aria-label="Open Menu">
+            <span class="bar"></span><span class="bar"></span
+            ><span class="bar"></span>
+          </button>
+        </div>
+      </nav>
+      <div id="mobile-menu">
+        <a href="main_dashboard.html">الرئيسية</a>
+        <a href="about.html">من نحن</a>
+        <div class="theme-switch-wrapper">
+          <label class="theme-switch" for="mobileThemeToggle"
+            ><input type="checkbox" id="mobileThemeToggle" />
+            <div class="slider round"></div
+          ></label>
+        </div>
+      </div>
+
+      <main class="page-content">
+        <div class="unified-container fade-in-up">
+          <h1 class="page-title">تحليل مباشر بالكاميرا</h1>
+          <p class="page-subtitle">
+            التقط صورة من كاميرا جهازك لتحليلها فورًا.
+          </p>
+          <div class="mb-8 p-4 rounded-lg bg-black/20">
+            <video
+              id="cameraFeed"
+              class="w-full rounded-lg hidden"
+              autoplay
+              playsinline
+            ></video>
+            <img
+              id="capturedImagePreview"
+              src="#"
+              alt="الصورة الملتقطة"
+              class="image-preview w-full"
+              style="display: none"
+            />
+            <canvas id="canvas" class="hidden"></canvas>
+            <div id="cameraPermissionGuide" class="p-4 text-center">
+              <p id="cameraPermissionMessage" class="text-xl">
+                للبدء، انقر على "تفعيل الكاميرا" وامنح الإذن.
+              </p>
+              <p id="permissionDeniedMessage" class="text-red-400 mt-2 hidden">
+                تم رفض إذن الكاميرا. يرجى تفعيله من إعدادات المتصفح.
+              </p>
+            </div>
+          </div>
+          <div class="flex justify-center gap-4 flex-wrap">
+            <button
+              type="button"
+              id="initiateCameraButton"
+              class="action-button hidden"
+            >
+              تفعيل الكاميرا
+            </button>
+            <button
+              type="button"
+              id="captureButton"
+              class="action-button hidden"
+              disabled
+            >
+              التقاط الصورة
+            </button>
+            <button
+              type="button"
+              id="retakeButton"
+              class="action-button bg-yellow-500 hover:bg-yellow-600 hidden"
+            >
+              إعادة الالتقاط
+            </button>
+          </div>
+          <button
+            type="button"
+            id="analyzeButton"
+            class="action-button analyze mt-4"
+            disabled
+          >
+            تحليل الصورة الملتقطة
+          </button>
+          <div id="loadingIndicator" class="loading-indicator hidden">
+            <div class="loader-spinner"></div>
+            <p>جاري التحليل...</p>
+          </div>
+          <div id="results" class="analysis-results hidden">
+            <h2 class="text-xl font-bold mb-4">نتائج التحليل:</h2>
+            <p id="analysisOutput" class="whitespace-pre-wrap text-lg"></p>
+          </div>
+          <div class="mt-10">
+            <a href="main_dashboard.html" class="action-button"
+              >العودة للوحة التحكم</a
+            >
+          </div>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <p>&copy; <span id="currentYear"></span> Handtalk. كل الحقوق محفوظة.</p>
+      </footer>
+    </div>
+    <script src="js/config.js"></script>
+    <script src="js/capture_script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js"></script>
+    <script src="js/particles-init.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/lang_switcher.js"></script>
+    <script>
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+      const mainToggle = document.getElementById("themeToggle");
+      const mobileToggle = document.getElementById("mobileThemeToggle");
+      if (mainToggle && mobileToggle) {
+        mobileToggle.checked = mainToggle.checked;
+        mobileToggle.addEventListener("change", () => {
+          mainToggle.checked = mobileToggle.checked;
+          mainToggle.dispatchEvent(new Event("change"));
+        });
+      }
+    </script>
+  </body>
+</html>

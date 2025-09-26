@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handtalk - لوحة التحكم</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="dark-mode">
+    <!-- Notification Element -->
+    <div
+      id="notification"
+      class="fixed top-5 right-5 bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg opacity-0 transition-all duration-300 z-50"
+    ></div>
+
+    <div class="content-wrapper">
+      <nav class="navbar">
+        <div class="navbar-container">
+          <a href="#" class="navbar-brand">Handtalk [Admin Panel]</a>
+          <div class="navbar-right-section">
+            <!-- تم إضافة هذا الـ div -->
+            <!-- Language Switcher Buttons -->
+            <div class="language-switcher flex items-center gap-2">
+              <button
+                id="langToggleAr"
+                class="action-button-small"
+                data-lang="ar"
+              >
+                عربي
+              </button>
+              <button
+                id="langToggleEn"
+                class="action-button-small"
+                data-lang="en"
+              >
+                English
+              </button>
+            </div>
+            <button
+              id="logoutButton"
+              class="action-button bg-red-500 hover:bg-red-600"
+            >
+              تسجيل الخروج
+            </button>
+            <!-- Hidden Google Translate Element -->
+            <div id="google_translate_element" style="display: none"></div>
+          </div>
+        </div>
+      </nav>
+      <main class="page-content">
+        <div id="loginSection" class="unified-container max-w-md">
+          <h1 class="page-title">الوصول مطلوب</h1>
+          <p class="page-subtitle">الرجاء إدخال مفتاح الوصول للدخول.</p>
+          <form id="loginForm" class="flex flex-col gap-4">
+            <input
+              type="password"
+              id="secretKeyInput"
+              placeholder="مفتاح الوصول السري"
+              class="text-input text-center"
+            />
+            <button type="submit" class="action-button">دخول</button>
+          </form>
+          <p id="loginError" class="text-red-500 mt-4 hidden"></p>
+        </div>
+        <div id="dashboardSection" class="unified-container max-w-6xl hidden">
+          <h1 class="page-title">لوحة التحكم الإدارية</h1>
+          <section
+            class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 text-center"
+          >
+            <div class="p-6 bg-gray-800 rounded-lg">
+              <h2 class="text-2xl font-bold text-white">الصور المحللة</h2>
+              <p
+                id="imagesAnalyzedStat"
+                class="text-4xl font-extrabold text-blue-400 mt-2"
+              >
+                0
+              </p>
+            </div>
+            <div class="p-6 bg-gray-800 rounded-lg">
+              <h2 class="text-2xl font-bold text-white">عمليات بحث القاموس</h2>
+              <p
+                id="dictionarySearchesStat"
+                class="text-4xl font-extrabold text-green-400 mt-2"
+              >
+                0
+              </p>
+            </div>
+          </section>
+          <section class="mb-8 text-right">
+            <h2 class="text-2xl font-bold mb-4">
+              محرر توجيه الذكاء الاصطناعي (Prompt)
+            </h2>
+            <textarea
+              id="promptEditor"
+              class="text-input w-full h-48 text-right"
+            ></textarea
+            ><button id="savePromptButton" class="action-button analyze mt-4">
+              حفظ التوجيه
+            </button>
+          </section>
+          <section>
+            <h2 class="text-2xl font-bold mb-4 text-right">مدير القاموس</h2>
+            <div
+              id="dictionaryTableContainer"
+              class="max-h-96 overflow-y-auto border border-gray-600 rounded-lg p-2"
+            ></div>
+            <h3 class="text-xl font-bold my-4 text-right">إضافة كلمة جديدة</h3>
+            <form
+              id="addWordForm"
+              class="grid grid-cols-1 md:grid-cols-3 gap-4"
+            >
+              <input
+                type="text"
+                id="newWordAr"
+                placeholder="الكلمة بالعربية"
+                class="text-input text-right"
+                required
+              /><input
+                type="text"
+                id="newWordEn"
+                placeholder="الكلمة بالإنجليزية"
+                class="text-input text-right"
+                required
+              /><input
+                type="url"
+                id="newWordUrl"
+                placeholder="رابط الصورة"
+                class="text-input text-right"
+                required
+              /><button type="submit" class="action-button md:col-span-3">
+                إضافة للقاموس
+              </button>
+            </form>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- The Fix: Include the config file before other scripts -->
+    <script src="js/config.js"></script>
+
+    <script src="js/admin.js"></script>
+    <script src="js/lang_switcher.js"></script>
+  </body>
+</html>

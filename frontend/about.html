@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handtalk - من نحن</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="particles-js"></div>
+    <div class="content-wrapper">
+      <nav class="navbar">
+        <div class="navbar-container">
+          <a href="main_dashboard.html" class="navbar-brand">Handtalk</a>
+          <div class="navbar-right-section">
+            <div class="navbar-links">
+              <a href="main_dashboard.html">الرئيسية</a>
+              <a href="about.html">من نحن</a>
+            </div>
+            <div class="language-switcher">
+              <button id="langToggleAr" class="lang-button" data-lang="ar">
+                عربي
+              </button>
+              <button id="langToggleEn" class="lang-button" data-lang="en">
+                English
+              </button>
+            </div>
+            <div class="theme-switch-wrapper">
+              <label class="theme-switch" for="themeToggle"
+                ><input type="checkbox" id="themeToggle" />
+                <div class="slider round"></div
+              ></label>
+            </div>
+            <div id="google_translate_element" style="display: none"></div>
+          </div>
+          <button id="menu-toggle" aria-label="Open Menu">
+            <span class="bar"></span><span class="bar"></span
+            ><span class="bar"></span>
+          </button>
+        </div>
+      </nav>
+      <div id="mobile-menu">
+        <a href="main_dashboard.html">الرئيسية</a>
+        <a href="about.html">من نحن</a>
+        <div class="language-switcher">
+          <button id="mobileLangToggleAr" class="lang-button" data-lang="ar">
+            عربي
+          </button>
+          <button id="mobileLangToggleEn" class="lang-button" data-lang="en">
+            English
+          </button>
+        </div>
+        <div class="theme-switch-wrapper">
+          <label class="theme-switch" for="mobileThemeToggle"
+            ><input type="checkbox" id="mobileThemeToggle" />
+            <div class="slider round"></div
+          ></label>
+        </div>
+      </div>
+
+      <main class="page-content">
+        <div class="unified-container text-right fade-in-up">
+          <h1 class="page-title text-center">حول Handtalk</h1>
+          <p class="page-subtitle text-center">
+            مهمتنا هي كسر حواجز التواصل عبر قوة التكنولوجيا.
+          </p>
+          <div class="pt-6" style="text-align: right">
+            <h2 class="text-2xl font-bold mb-4">كيف نعمل؟</h2>
+            <p class="mb-4 text-lg leading-relaxed">
+              يستخدم Handtalk قوة الذكاء الاصطناعي، وتحديدًا نموذج Gemini من
+              Google، لتحليل وتفسير الصور التي تحتوي على لغة الإشارة. سواء كنت
+              ترفع صورة، أو تلتقطها مباشرة، فإن نظامنا الذكي يقدم لك شرحًا
+              وافيًا باللهجة المحلية لمساعدتك على فهم الإشارة.
+            </p>
+            <h2 class="text-2xl font-bold mb-4 mt-6">خدماتنا الأساسية</h2>
+            <ul class="list-disc list-inside text-lg leading-relaxed">
+              <li class="mb-2">
+                <strong>تحليل الصور:</strong> فهم فوري لإشارات الأيدي والمواقف
+                البصرية.
+              </li>
+              <li class="mb-2">
+                <strong>القاموس المرئي:</strong> أداة بحث قوية (نصية وصوتية)
+                للعثور على صور توضيحية.
+              </li>
+              <li class="mb-2">
+                <strong>التفاعل المباشر:</strong> التقط صورة بالكاميرا واحصل على
+                تحليل فوري.
+              </li>
+            </ul>
+          </div>
+          <div class="mt-10 text-center">
+            <a href="main_dashboard.html" class="action-button"
+              >العودة للوحة التحكم</a
+            >
+          </div>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <p>&copy; <span id="currentYear"></span> Handtalk. كل الحقوق محفوظة.</p>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js"></script>
+    <script src="js/particles-init.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/lang_switcher.js"></script>
+    <script>
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+      // --- Universal Control Sync Script ---
+      const mainThemeToggle = document.getElementById("themeToggle");
+      const mobileThemeToggle = document.getElementById("mobileThemeToggle");
+      const mainLangAr = document.getElementById("langToggleAr");
+      const mainLangEn = document.getElementById("langToggleEn");
+      const mobileLangAr = document.getElementById("mobileLangToggleAr");
+      const mobileLangEn = document.getElementById("mobileLangToggleEn");
+
+      function syncControls() {
+        if (mainThemeToggle && mobileThemeToggle)
+          mobileThemeToggle.checked = mainThemeToggle.checked;
+        if (mainLangAr && mobileLangAr)
+          mobileLangAr.className = mainLangAr.className;
+        if (mainLangEn && mobileLangEn)
+          mobileLangEn.className = mainLangEn.className;
+      }
+
+      if (mobileThemeToggle)
+        mobileThemeToggle.addEventListener("change", () => {
+          mainThemeToggle.checked = mobileThemeToggle.checked;
+          mainThemeToggle.dispatchEvent(new Event("change"));
+        });
+      if (mainThemeToggle)
+        mainThemeToggle.addEventListener("change", () => {
+          if (mobileThemeToggle)
+            mobileThemeToggle.checked = mainThemeToggle.checked;
+        });
+      if (mobileLangAr)
+        mobileLangAr.addEventListener("click", () => mainLangAr.click());
+      if (mobileLangEn)
+        mobileLangEn.addEventListener("click", () => mainLangEn.click());
+
+      document.addEventListener("DOMContentLoaded", () => {
+        syncControls();
+        setTimeout(syncControls, 500);
+        document
+          .getElementById("menu-toggle")
+          ?.addEventListener("click", () => {
+            if (
+              document
+                .getElementById("mobile-menu")
+                .classList.contains("is-open")
+            )
+              syncControls();
+          });
+      });
+    </script>
+  </body>
+</html>

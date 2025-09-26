@@ -1,0 +1,107 @@
+[
+  {
+    "word_ar": "شكرا",
+    "word_en": "thank you",
+    "image_url": "https://www.signasl.org/sign/thank-you"
+  },
+  {
+    "word_ar": "من فضلك",
+    "word_en": "please",
+    "image_url": "https://www.signasl.org/sign/please"
+  },
+  {
+    "word_ar": "نعم",
+    "word_en": "yes",
+    "image_url": "https://www.signasl.org/sign/yes"
+  },
+  {
+    "word_ar": "لا",
+    "word_en": "no",
+    "image_url": "https://www.signasl.org/sign/no"
+  },
+  {
+    "word_ar": "مساعدة",
+    "word_en": "help",
+    "image_url": "https://www.signasl.org/sign/help"
+  },
+  {
+    "word_ar": "أكثر",
+    "word_en": "more",
+    "image_url": "https://www.signasl.org/sign/more"
+  },
+  {
+    "word_ar": "أنا أحبك",
+    "word_en": "i love you",
+    "image_url": "https://www.signasl.org/sign/i-love-you"
+  },
+  {
+    "word_ar": "صديق",
+    "word_en": "friend",
+    "image_url": "https://www.signasl.org/sign/friend"
+  },
+  {
+    "word_ar": "أب",
+    "word_en": "father",
+    "image_url": "https://www.signasl.org/sign/father"
+  },
+  {
+    "word_ar": "أم",
+    "word_en": "mother",
+    "image_url": "https://www.signasl.org/sign/mother"
+  },
+  {
+    "word_ar": "أخ",
+    "word_en": "brother",
+    "image_url": "https://www.signasl.org/sign/brother"
+  },
+  {
+    "word_ar": "أخت",
+    "word_en": "sister",
+    "image_url": "https://www.signasl.org/sign/sister"
+  },
+  {
+    "word_ar": "يأكل",
+    "word_en": "eat",
+    "image_url": "https://www.signasl.org/sign/eat"
+  },
+  {
+    "word_ar": "يشرب",
+    "word_en": "drink",
+    "image_url": "https://www.signasl.org/sign/drink"
+  },
+  {
+    "word_ar": "ينام",
+    "word_en": "sleep",
+    "image_url": "https://www.signasl.org/sign/sleep"
+  },
+  {
+    "word_ar": "ماذا",
+    "word_en": "what",
+    "image_url": "https://www.signasl.org/sign/what"
+  },
+  {
+    "word_ar": "أين",
+    "word_en": "where",
+    "image_url": "https://www.signasl.org/sign/where"
+  },
+  {
+    "word_ar": "لماذا",
+    "word_en": "why",
+    "image_url": "https://www.signasl.org/sign/why"
+  },
+  {
+    "word_ar": "مع السلامة",
+    "word_en": "goodbye",
+    "image_url": "https://www.signasl.org/sign/goodbye"
+  },
+  {
+    "word_ar": "مرحبا",
+    "word_en": "hi",
+    "image_url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.audition.guide%2Far%2Fhearing-health%2Flearn-sign-language%2F&psig=AOvVaw2HI5aNfV8_UrR85XlVgMUV&ust=1758858206935000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCKjWirP_8o8DFQAAAAAdAAAAABAE"
+  },
+  {
+    "word_ar": "مم",
+    "word_en": "ohh",
+    "image_url": "data:image/jpeg;base64,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"
+  }
+]
